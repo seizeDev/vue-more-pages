@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "serve": "vue-cli-service serve --open ",
+    "build": "vue-cli-service build && node util/jsCopy.js && node util/cssCopy.js && node util/htmlReplace.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "express": "^4.16.4",
     "vue": "^2.5.17"
   },
   "devDependencies": {
