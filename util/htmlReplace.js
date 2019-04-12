@@ -5,7 +5,7 @@ const glob = require('glob');
  * @param src
  * @param dst
  */
-var callbackFile = function( src,dst, name ){
+var callbackFile = function( src,dst, name, filepath ){
     fs.readFile(src,'utf8',function(error,data){
         if(error){
             console.log(error);
@@ -13,6 +13,7 @@ var callbackFile = function( src,dst, name ){
         }
         let regCss = new RegExp("\/css\/"+name+"",'g');
         let regJs = new RegExp("\/js\/"+name+"",'g');
+        console.log(name)
         let htmlContent = data.toString().replace(regCss,`\.\/css\/${name}`).replace(regJs,`\.\/js\/${name}`);
         fs.writeFile(dst,htmlContent,'utf8',function(error){
             if(error){
@@ -22,6 +23,10 @@ var callbackFile = function( src,dst, name ){
             // console.log('html重新写入成功');
             fs.unlink(src,function () {
               //  console.log('html删除成功')
+            })
+            fs.unlink(filepath,function () {// css删除成功
+            })
+            fs.unlink(filepath+'.map',function () {// css删除成功
             })
         })
     })
@@ -33,6 +38,6 @@ glob.sync( './dist/js/*.js').forEach((filepath,name) => {
     let thisDirectory = `./dist/${fileName}/${fileName}.html`;// 多页面JS文件地存放址
     let changeDirectory = `./dist/${fileName}/index.html`;// 多页面JS文件地存放址
     if(!fileName.includes('chunk-vendors')){
-        callbackFile(thisDirectory,changeDirectory,fileName)
+        callbackFile(thisDirectory,changeDirectory,fileName,filepath)
     }
 });

@@ -18,11 +18,11 @@ var callbackFile = function( src, dst ){
                 return false;
             }
             if(dst.includes('.map')){
-                let srcName = src.split('/')[4];
-                fs.unlink(`./dist/js/${srcName}.map`,function () {// 删除map
-                })
-                fs.unlink(`./dist/js/${srcName}`,function () {// 删除js
-                })
+                // let srcName = src.split('/')[4];
+                // fs.unlink(`./dist/js/${srcName}.map`,function () {// 删除map
+                // })
+                // fs.unlink(`./dist/js/${srcName}`,function () {// 删除js
+                // })
             }else{//JS写入成功
                 callbackFile(dst,`${dst}.map`)
             }
