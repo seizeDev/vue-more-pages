@@ -13,7 +13,6 @@ var callbackFile = function( src,dst, name, filepath ){
         }
         let regCss = new RegExp("\/css\/"+name+"",'g');
         let regJs = new RegExp("\/js\/"+name+"",'g');
-        console.log(name)
         let htmlContent = data.toString().replace(regCss,`\.\/css\/${name}`).replace(regJs,`\.\/js\/${name}`);
         fs.writeFile(dst,htmlContent,'utf8',function(error){
             if(error){
@@ -21,9 +20,11 @@ var callbackFile = function( src,dst, name, filepath ){
                 return false;
             }
             // console.log('html重新写入成功');
-            fs.unlink(src,function () {
-              //  console.log('html删除成功')
-            })
+            if(src.indexOf('/index.html') == -1){
+                fs.unlink(src,function () {
+                    //  console.log('html删除成功')
+                })
+            }
             fs.unlink(filepath,function () {// css删除成功
             })
             fs.unlink(filepath+'.map',function () {// css删除成功
