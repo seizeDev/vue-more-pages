@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="../../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js ceshi2 "/>
+    <HelloWorld msg="页面2：ceshi2 "/>
+    <p>页面1URL：http://localhost:8081</p>
   </div>
 </template>
 
