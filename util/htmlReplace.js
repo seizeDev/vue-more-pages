@@ -12,8 +12,8 @@ var callbackFile = function (src, dst, name, filepath) {
       console.log(error)
       return false
     }
-    let regCss = new RegExp('/css/' + name + '', 'g')
-    let regJs = new RegExp('/js/' + name + '', 'g')
+    let regCss = new RegExp('/dist/css/' + name + '', 'g')
+    let regJs = new RegExp('/dist/js/' + name + '', 'g')
     let htmlContent = data.toString().replace(regCss, `./css/${name}`).replace(regJs, `./js/${name}`)
     fs.writeFile(dst, htmlContent, 'utf8', function (error) {
       if (error) {
