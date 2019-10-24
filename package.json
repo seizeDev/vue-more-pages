@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve --open ",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build && node util/jsCopy.js && node util/cssCopy.js && node util/htmlReplace.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
