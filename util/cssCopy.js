@@ -12,7 +12,9 @@ var callbackFile = function (src, dst) {
       console.log(error)
       return false
     }
-    fs.writeFile(dst, data.toString(), 'utf8', function (error) {
+    let regImage = new RegExp('../img/', 'g');
+    let cssContent = data.toString().replace(regImage, `../../img/`);
+    fs.writeFile(dst, cssContent, 'utf8', function (error) {
       if (error) {
         // eslint-disable-next-line no-console
         console.log(error)
